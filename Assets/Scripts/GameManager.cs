@@ -48,10 +48,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
-<<<<<<< Updated upstream
         Invoke("Update()", 3);
-=======
->>>>>>> Stashed changes
+
     }
 
     // Update is called once per frame
@@ -113,7 +111,7 @@ public class GameManager : MonoBehaviour
 
 
             //audioManager 에서 받아와서 true 코드 실행
-            audioManager.instance.PMSPaly();
+            //audioManager.instance.PMSPaly();
 
 
             firstCard.GetComponent<Card>().DestroyCard();
@@ -147,7 +145,7 @@ public class GameManager : MonoBehaviour
         else
         {
             //audioManager 에서 받아와서 false 코드 실행
-            audioManager.instance.PUMSPaly();
+            //audioManager.instance.PUMSPaly();
 
 
             firstCard.GetComponent<Card>().CloseCard();
