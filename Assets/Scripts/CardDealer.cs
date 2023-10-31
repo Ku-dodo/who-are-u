@@ -10,30 +10,26 @@ using UnityEngine;
 public class CardDealer : MonoBehaviour
 {
     public GameObject prefab_Card;
-    GameObject deck;
     public float placeSpeed;
-    
+    List<GameObject> deck = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
-        deck = new GameObject();
-        deck.name = "Cards";
         StartCoroutine(ISpawnCard());
     }
 
     IEnumerator ISpawnCard()
     {
-        int[] cardNumbers = { 0, 0, 1, 1, 4, 4, 5, 5, 8, 8, 9, 9, 12, 12, 13, 13 };
+        int[] cardNumbers = { 0, 0, 1, 1,  2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
         cardNumbers = cardNumbers.OrderBy(x => UnityEngine.Random.Range(-1.0f, 1.0f)).ToArray();
 
         for (int i = 0; i < cardNumbers.Length; ++i)
         {
             GameObject go = Instantiate(prefab_Card, transform.position, transform.rotation);
-            go.transform.parent = deck.transform;
+            deck.Add(go);
             Card card = go.GetComponent<Card>();
 
             string spriteName = "card" + cardNumbers[i].ToString();
-            // cardNumbers[i] / 4 -> to Enum -> Set Name 
             card.SetCardImage(Resources.Load<Sprite>(spriteName));
 
             int x = i % 4;
@@ -53,17 +49,17 @@ public class CardDealer : MonoBehaviour
 
     void ShowDeck()
     {
-        for(int i = 0; i < deck.transform.childCount; ++i)
+        for(int i = 0; i < deck.Count(); ++i)
         {
-            deck.transform.GetChild(i).GetComponent<Card>().Show();
+            deck[i].GetComponent<Card>().Show();
         }
     }
 
     void CloseDeck()
     {
-        for (int i = 0; i < deck.transform.childCount; ++i)
+        for (int i = 0; i < deck.Count(); ++i)
         {
-            deck.transform.GetChild(i).GetComponent<Card>().CloseCard();
+            deck[i].GetComponent<Card>().CloseCard();
         }
     }
 }
