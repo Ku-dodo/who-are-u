@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     //시간 관련 변수
     public GameObject card;
     public Text timetxt;
+    float time = 30.0f;
 
     //게임 종료 관련 변수
     public GameObject endcanvas;
@@ -45,6 +46,35 @@ public class GameManager : MonoBehaviour
     void Update()
     { 
 
+    }
+
+    //Timer..
+    void Tiemr()
+    {
+        time -= Time.deltaTime;
+        timetxt.text = time.ToString("N1");
+
+        if (time <= 0.00f)
+        {
+            Time.timeScale = 0.0f;
+            /*endText.SetActive(true);*/
+            /*audioManager.instance.SpeedUp(0);*/
+            timetxt.text = "<color=black>" + time.ToString("N1") + "</color>";
+        }
+        else if (time < 10.00f) 
+        {
+            /*audioManager.instance.SpeedUp(2);*/
+            timetxt.text = "<color=red>" + time.ToString("N1") + "</color>";
+        }
+        else if (time < 20.00f)
+        {
+            /*audioManager.instance.SpeedUp(1);*/
+            timetxt.text = "<color=orange>" + time.ToString("N1") + "</color>";
+        }
+        else
+        {
+            timetxt.text = "<color=white>" + time.ToString("N1") + "</color>";
+        }
     }
 
     public void testMatched()
