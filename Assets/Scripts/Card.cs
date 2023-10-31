@@ -14,6 +14,7 @@ public class Card : MonoBehaviour
     public float cardCloseSpeed = 1.0f;
     SpriteRenderer spriteRenderer;
     Animator animator;
+    BoxCollider2D boxCollider;
     bool isOpen = false;
     public float speed = 1.0f;
     Vector3 dir;
@@ -24,11 +25,13 @@ public class Card : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = backgroundCardColor[0];
-        placePos = transform.position;
+        spriteRenderer.color = backgroundCardColor[0];        
+
         animator = GetComponent<Animator>();
 
-        //CloseCard();
+        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider.enabled = false;
+        placePos = transform.position;
     }
 
     private void Update()
@@ -61,13 +64,24 @@ public class Card : MonoBehaviour
     public void OpenCard()
     {
         isOpen = true;
+        boxCollider.enabled = false;
         transform.rotation = Quaternion.identity;
         animator.SetBool("IsOpen", true);
         StartCoroutine(IOpenCard());
 
         // Do) Play Open Sound
+        audioManager.instance.PCSPaly();
 
         // Do) Send to MatchedClass me(gameObject)
+        if (GameManager.I.firstCard == null)
+        {
+            GameManager.I.firstCard = this.gameObject;
+        }
+        else
+        {
+            GameManager.I.secondCard = this.gameObject;
+            GameManager.I.IsMatched();
+        }
     }
 
     IEnumerator IOpenCard()
@@ -90,6 +104,8 @@ public class Card : MonoBehaviour
         gameObject.transform.Find("Back").gameObject.SetActive(true);
         if(isOpen) spriteRenderer.color = backgroundCardColor[1];
         animator.SetBool("IsOpen", false);
+        audioManager.instance.PCSPaly();
+        boxCollider.enabled = true;
     }
 
     public void DestroyCard()
