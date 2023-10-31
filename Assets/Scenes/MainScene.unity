@@ -706,6 +706,7 @@ GameObject:
   - component: {fileID: 896945691}
   - component: {fileID: 896945690}
   - component: {fileID: 896945689}
+  - component: {fileID: 896945692}
   m_Layer: 0
   m_Name: audioManager
   m_TagString: Untagged
@@ -823,9 +824,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 896945689}
   bgmusic: {fileID: 8300000, guid: 5a20eb47405d5e14e91839bc41b02b50, type: 3}
-  PlayClickSound: {fileID: 8300000, guid: 9ff693fea66e1ce4296514f88cfc3595, type: 3}
-  PlayMatchedSound: {fileID: 8300000, guid: 1decac23d525eaa46a9ffd04f88bea00, type: 3}
-  PlayUnMatchedSound: {fileID: 8300000, guid: 03ee99efb7828e948a900a48dcf9e09b, type: 3}
+  flip: {fileID: 8300000, guid: e9dcfebb230b19141bbd8d6c02e02e46, type: 3}
+  match: {fileID: 8300000, guid: 3854f3862f985e243a6d4ebd2fb34b38, type: 3}
+  unmatch: {fileID: 8300000, guid: 9af30e6d8058aa445be3e278e91e7a1d, type: 3}
 --- !u!4 &896945691
 Transform:
   m_ObjectHideFlags: 0
@@ -840,6 +841,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &896945692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896945688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2872f60925edb6c4386332cc26611177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  bgmusic: {fileID: 0}
+  flip: {fileID: 0}
+  match: {fileID: 0}
+  unmatch: {fileID: 0}
 --- !u!1 &1049744108
 GameObject:
   m_ObjectHideFlags: 0

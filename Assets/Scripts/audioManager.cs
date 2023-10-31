@@ -12,9 +12,9 @@ public class audioManager : MonoBehaviour
     }
     public AudioSource audioSource;
     public AudioClip bgmusic;
-    public AudioClip PlayClickSound;
-    public AudioClip PlayMatchedSound;
-    public AudioClip PlayUnMatchedSound;
+    public AudioClip flip;
+    public AudioClip match;
+    public AudioClip unmatch;
 
     // Start is called before the first frame update
     void Start()
@@ -28,16 +28,16 @@ public class audioManager : MonoBehaviour
     {
 
     }
-    public void PCSPaly()
+    public void flipPlay()
     {
-        audioSource.PlayOneShot(PlayClickSound);
+        audioSource.PlayOneShot(flip);
     }
-    public void PMSPaly()
+    public void matchPlay()
     {
-        audioSource.PlayOneShot(PlayMatchedSound);
+        audioSource.PlayOneShot(match);
     }
-    public void PUMSPaly()
+    public void unmatchPlay()
     {
-        audioSource.PlayOneShot(PlayUnMatchedSound);
+        audioSource.PlayOneShot(unmatch);
     }
 }
