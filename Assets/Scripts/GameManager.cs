@@ -87,8 +87,9 @@ public class GameManager : MonoBehaviour
         if (firstCardImage == secondCardImage)
         {
             //audioManager 에서 받아와서 true 코드 실행
-            //firstCard.GetComponent<card>().DestroyCard();
-            //secondCard.GetComponent<card>().DestroyCard();
+
+            firstCard.GetComponent<Card>().DestroyCard();
+            secondCard.GetComponent<Card>().DestroyCard();
 
             //매치 성공 시 Text 변환 switch문 예정
 
@@ -109,8 +110,9 @@ public class GameManager : MonoBehaviour
         else
         {
             //audioManager 에서 받아와서 false 코드 실행
-            //firstCard.GetComponent<card>().closeCard();
-            //secondCard.GetComponent<card>().closeCard();
+
+            firstCard.GetComponent<Card>().CloseCard();
+            secondCard.GetComponent<Card>().CloseCard();
 
             //매칭 실패 UI가 나타났다가 사라짐 넣을 예정
             unMatchCanvas.SetActive(true);
