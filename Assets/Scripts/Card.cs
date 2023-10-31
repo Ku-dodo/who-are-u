@@ -70,7 +70,7 @@ public class Card : MonoBehaviour
         StartCoroutine(IOpenCard());
 
         // Do) Play Open Sound
-        audioManager.instance.PCSPaly();
+        audioManager.instance.flipPlay();
 
         // Do) Send to MatchedClass me(gameObject)
         if (GameManager.I.firstCard == null)
@@ -104,7 +104,7 @@ public class Card : MonoBehaviour
         gameObject.transform.Find("Back").gameObject.SetActive(true);
         if(isOpen) spriteRenderer.color = backgroundCardColor[1];
         animator.SetBool("IsOpen", false);
-        audioManager.instance.PCSPaly();
+        audioManager.instance.flipPlay();
         boxCollider.enabled = true;
     }
 
