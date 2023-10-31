@@ -45,11 +45,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Tiemr();
+        Timer();
     }
 
     //Timer..
-    void Tiemr()
+    void Timer()
     {
         time -= Time.deltaTime;
         timetxt.text = time.ToString("N1");
@@ -77,39 +77,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Timer..
-    void Tiemr()
-    {
-        time -= Time.deltaTime;
-        timetxt.text = time.ToString("N1");
 
-        if (time <= 0.00f)
-        {
-            Time.timeScale = 0.0f;
-            /*endText.SetActive(true);*/
-            /*audioManager.instance.SpeedUp(0);*/
-            timetxt.text = "<color=black>" + time.ToString("N1") + "</color>";
-        }
-        else if (time < 10.00f) 
-        {
-            /*audioManager.instance.SpeedUp(2);*/
-            timetxt.text = "<color=red>" + time.ToString("N1") + "</color>";
-        }
-        else if (time < 20.00f)
-        {
-            /*audioManager.instance.SpeedUp(1);*/
-            timetxt.text = "<color=orange>" + time.ToString("N1") + "</color>";
-        }
-        else
-        {
-            timetxt.text = "<color=white>" + time.ToString("N1") + "</color>";
-        }
-    }
-
-    public void testMatched()
-    {
-        
-    }
     //매치 시도 함수
     public void IsMatched()
     {
