@@ -49,6 +49,8 @@ public class CardDealer : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
         CloseDeck();
+        yield return new WaitForSeconds(1.0f);
+        GameManager.I.OnTimer();
     }
 
     void ShowDeck()
