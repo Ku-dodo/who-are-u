@@ -54,6 +54,7 @@ public class CardDealer : MonoBehaviour
         CloseDeck();
         yield return new WaitForSeconds(1.0f);
         GameManager.I.OnTimer();
+        audioManager.instance.flipPlay();
     }
 
     Vector3 GetPlacePos(int index)
