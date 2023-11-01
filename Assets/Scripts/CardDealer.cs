@@ -33,7 +33,7 @@ public class CardDealer : MonoBehaviour
             Card card = go.GetComponent<Card>();
 
             string spriteName = "card" + cardNumbers[i].ToString();
-            // cardNumbers[i] / 4 -> to Enum -> Set Name 
+            card.Owner = ((Define.EMemberName)(cardNumbers[i] / (int)Define.EMemberName.Max)).ToString();
             card.SetCardImage(Resources.Load<Sprite>(spriteName));
 
             int x = i % 4;

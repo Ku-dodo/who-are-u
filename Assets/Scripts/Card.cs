@@ -7,6 +7,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.ParticleSystemJobs;
 using static UnityEditor.PlayerSettings;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Card : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator animator;
     BoxCollider2D boxCollider;
+    string owner;
+    public string Owner { get { return owner; }  set { owner = value; } }
     bool isOpen = false;
     public float speed = 1.0f;
     Vector3 dir;
@@ -63,6 +66,7 @@ public class Card : MonoBehaviour
 
     public void OpenCard()
     {
+        Debug.Log(owner);
         isOpen = true;
         boxCollider.enabled = false;
         transform.rotation = Quaternion.identity;
@@ -70,7 +74,7 @@ public class Card : MonoBehaviour
         StartCoroutine(IOpenCard());
 
         // Do) Play Open Sound
-        audioManager.instance.flipPlay();
+        //audioManager.instance.flipPlay();
 
         // Do) Send to MatchedClass me(gameObject)
         if (GameManager.I.firstCard == null)
@@ -104,7 +108,7 @@ public class Card : MonoBehaviour
         gameObject.transform.Find("Back").gameObject.SetActive(true);
         if(isOpen) spriteRenderer.color = backgroundCardColor[1];
         animator.SetBool("IsOpen", false);
-        audioManager.instance.flipPlay();
+        //audioManager.instance.flipPlay();
         boxCollider.enabled = true;
     }
 
