@@ -37,20 +37,12 @@ public class CardDealer : MonoBehaviour
             Card card = go.GetComponent<Card>();
 
             string spriteName = "card" + cardNumbers[i].ToString();
-            card.Owner = ((Define.EMemberName)(cardNumbers[i] / 4)).ToString();
+            card.Owner = ((Define.EMemberName)(cardNumbers[i] / 5)).ToString();
             card.SetCardImage(Resources.Load<Sprite>(spriteName));
-
-            // 4 by 4 //
-            /*
-            int x = i % 4;
-            int y = i / 4;
-            Vector3 pos = new Vector3(-2.1f + 1.4f * x, -3.1f + 1.7f * y, 0);
-            yield return new WaitForSeconds(placeSpeed);
-            card.Place(pos);
-            */
-            
+                        
             yield return new WaitForSeconds(placeSpeed);
             card.Place(GetPlacePos(i));
+            audioManager.instance.flipPlay();
         }
         transform.Find("OutLine").gameObject.SetActive(false);
 
