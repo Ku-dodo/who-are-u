@@ -6,27 +6,28 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //ì‹±ê¸€í†¤ ê´€ë ¨ ë³€ìˆ˜
+    //½Ì±ÛÅæ °ü·Ã º¯¼ö
     public static GameManager I;
 
-    //ì‹œê°„ ê´€ë ¨ ë³€ìˆ˜
+    //½Ã°£ °ü·Ã º¯¼ö
     public GameObject card;
     public GameObject TimeCanvas;
     public Text timetxt;
     float time = 60.0f;
 
-    //ì¹´ë“œ ë°°ì¹˜
+    //Ä«µå ¹èÄ¡
     public bool sortCompleted = false;
     public CardDealer cardDealer;
 
-    //ê²Œì„ ì¢…ë£Œ ê´€ë ¨ ë³€ìˆ˜
+    //°ÔÀÓ Á¾·á °ü·Ã º¯¼ö
     public GameObject endcanvas;
 
-    //Match ê´€ë ¨ ë³€ìˆ˜
+    //Match °ü·Ã º¯¼ö
     public GameObject firstCard;
     public GameObject secondCard;
 
-    //ê²°ê³¼ ì°½ ì ìˆ˜ ê´€ë ¨ ë³€ìˆ˜
+    //°á°ú Ã¢ Á¡¼ö °ü·Ã º¯¼ö
+    public Text endTimeText;
     public Text counttxt;
     public Text trytxt;
     int matchCount;
@@ -35,12 +36,12 @@ public class GameManager : MonoBehaviour
     int totalScore;
     int bestScore = 0;
 
-    //MatchUI ê´€ë ¨ ë³€ìˆ˜
+    //MatchUI °ü·Ã º¯¼ö
     public GameObject matchCanvas;
     public GameObject unMatchCanvas;
     public Text ownerNameTxt;
 
-    //ì¹´ë“œ ì´ˆê¸°í™” ê´€ë ¨ íƒ€ì´ë¨¸
+    //Ä«µå ÃÊ±âÈ­ °ü·Ã Å¸ÀÌ¸Ó
     float PickTime = 0f;
 
     void Awake()
@@ -66,9 +67,11 @@ public class GameManager : MonoBehaviour
         int childLeft = GameObject.Find("Cards").transform.childCount;
         if (childLeft == 0)
         {
-            //44ë³´ë“œ í´ë¦¬ì–´ ì—¬ë¶€ë¥¼ ì €ì¥í•˜ê¸° ìœ„í•œ ì½”ë“œ
+
+            //44º¸µå Å¬¸®¾î ¿©ºÎ¸¦ ÀúÀåÇÏ±â À§ÇÑ ÄÚµå
             PlayerPrefs.SetInt("ClearStage", 1);
             Invoke("EndGame", 1.1f);
+            EndGame();
         }
 
         unPickCard();
@@ -83,7 +86,7 @@ public class GameManager : MonoBehaviour
     void Timer()
     {   
 
-        if (sortCompleted == true)  // true ì¼ë•Œ Timerê°€ ì‹¤í–‰ ë¨..
+        if (sortCompleted == true)  // true ÀÏ¶§ Timer°¡ ½ÇÇà µÊ..
         {
             time -= Time.deltaTime;
             timetxt.text = time.ToString("N1");
@@ -113,7 +116,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //ë§¤ì¹˜ ì‹œë„ í•¨ìˆ˜
+    //¸ÅÄ¡ ½Ãµµ ÇÔ¼ö
     public void IsMatched()
     {
         
@@ -126,7 +129,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Matched!");
 
 
-            //audioManager ì—ì„œ ë°›ì•„ì™€ì„œ true ì½”ë“œ ì‹¤í–‰
+            //audioManager ¿¡¼­ ¹Ş¾Æ¿Í¼­ true ÄÚµå ½ÇÇà
             audioManager.instance.matchPlay();
             
 
@@ -136,29 +139,29 @@ public class GameManager : MonoBehaviour
             ownerNameTxt.text = firstCard.GetComponent<Card>().Owner;
 
 
-            //ë§¤ì¹­ ì„±ê³µ UIê°€ ë‚˜íƒ€ë‚¬ë‹¤ê°€ ì‚¬ë¼ì§
+            //¸ÅÄª ¼º°ø UI°¡ ³ªÅ¸³µ´Ù°¡ »ç¶óÁü
             matchCanvas.SetActive(true);
             Invoke("HideMatchUI", 1.0f);
 
-            //ë§¤ì¹˜ ì„±ê³µ ì¹´ë“œ ì¹´ìš´í„°
+            //¸ÅÄ¡ ¼º°ø Ä«µå Ä«¿îÅÍ
             matchCount++;
 
         }
         else
         {
             Debug.Log("UnMatched!");
-            //audioManager ì—ì„œ ë°›ì•„ì™€ì„œ false ì½”ë“œ ì‹¤í–‰
+            //audioManager ¿¡¼­ ¹Ş¾Æ¿Í¼­ false ÄÚµå ½ÇÇà
             audioManager.instance.unmatchPlay();
 
 
             firstCard.GetComponent<Card>().CloseCard();
             secondCard.GetComponent<Card>().CloseCard();
 
-            //ë§¤ì¹­ ì‹¤íŒ¨ UIê°€ ë‚˜íƒ€ë‚¬ë‹¤ê°€ ì‚¬ë¼ì§
+            //¸ÅÄª ½ÇÆĞ UI°¡ ³ªÅ¸³µ´Ù°¡ »ç¶óÁü
             unMatchCanvas.SetActive(true);
             Invoke("HideUnMatchUI", 1.0f);
 
-            //ì‹œê°„ 2ì´ˆ ê°ì†Œ..
+            //½Ã°£ 1ÃÊ °¨¼Ò..
             matchFailed++;
             time -= 1;
         }
@@ -166,7 +169,7 @@ public class GameManager : MonoBehaviour
         secondCard = null;
     }
 
-    //ë§¤ì¹­ê²°ê³¼ UI Hide
+    //¸ÅÄª°á°ú UI Hide
     public void HideMatchUI()
     {
         matchCanvas.gameObject.SetActive(false);
@@ -176,18 +179,18 @@ public class GameManager : MonoBehaviour
         unMatchCanvas.SetActive(false);
     }
 
-    //ë§¤ì¹­ ì„±ê³µ ì‹œ UI ë…¸ì¶œ
+    //¸ÅÄª ¼º°ø ½Ã UI ³ëÃâ
     void EndGame()
     {
-        //ì ìˆ˜ = ë‚¨ì€ ì‹œê°„("N0") * 10 + ë§¤ì¹­ ì„±ê³µ(íšŸìˆ˜ * 50) - ë§¤ì¹­ ì‹¤íŒ¨(íšŸìˆ˜ * 15)
+        //Á¡¼ö = ³²Àº ½Ã°£("N0") * 10 + ¸ÅÄª ¼º°ø(È½¼ö * 50) - ¸ÅÄª ½ÇÆĞ(È½¼ö * 15)
         totalScore = ((int)time * 10) + (matchCount * 50) - (matchFailed * 15);
-        
-        timetxt.text = $"ë‚¨ì€ ì‹œê°„ : {time.ToString("N1")}";
-        trytxt.text = $"ì‹œë„ íšŸìˆ˜ : {matchTry}";
-        /*counttxt.text = $"ì ìˆ˜ : {matchCount}";*/
-        counttxt.text = "ì ìˆ˜ : " + totalScore.ToString();
 
-        if(bestScore < totalScore)
+        endTimeText.text = $"³²Àº ½Ã°£ : {time.ToString("N1")}";
+        trytxt.text = $"½Ãµµ È½¼ö : {matchTry}";
+        /*counttxt.text = $"Á¡¼ö : {matchCount}";*/
+        counttxt.text = "Á¡¼ö : " + totalScore.ToString();
+
+        if (bestScore < totalScore)
         {
             SaveBestScore(totalScore);
         }
@@ -198,6 +201,8 @@ public class GameManager : MonoBehaviour
         BGM.instance.SpeedUp(0);
     }
 
+        
+
 
     void SpawnUI()
     {
@@ -206,7 +211,7 @@ public class GameManager : MonoBehaviour
 
     void LoadBestScore()
     {
-        switch(cardDealer.stage)
+        switch (cardDealer.stage)
         {
             case CardDealer.EStage.Card16EA:
                 if (PlayerPrefs.HasKey("4by4BestScore"))
@@ -242,8 +247,8 @@ public class GameManager : MonoBehaviour
     {
         return bestScore;
     }
-    
-    //3ì´ˆ ì´ìƒ secondCardë¥¼ ë’¤ì§‘ì§€ ì•Šìœ¼ë©´ firstCardë¥¼ ì´ˆê¸°í™” í•©ë‹ˆë‹¤.
+
+    //3ÃÊ ÀÌ»ó secondCard¸¦ µÚÁıÁö ¾ÊÀ¸¸é firstCard¸¦ ÃÊ±âÈ­ ÇÕ´Ï´Ù.
     void unPickCard()
     {
         if(firstCard != null &&  secondCard == null)
