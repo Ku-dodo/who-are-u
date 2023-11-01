@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,6 +37,9 @@ public class GameManager : MonoBehaviour
     public GameObject unMatchCanvas;
     public Text ownerNameTxt;
 
+    //카드 초기화 관련 타이머
+    float PickTime = 0f;
+
     void Awake()
     {
         I = this;
@@ -59,6 +64,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("ClearStage", 1);
             Invoke("EndGame", 1.1f);
         }
+
+        unPickCard();
     }
     public void OnTimer()
     {
@@ -179,5 +186,23 @@ public class GameManager : MonoBehaviour
         TimeCanvas.SetActive(false);
         BGM.instance.SpeedUp(0);
     }
-
+    
+    //3초 이상 secondCard를 뒤집지 않으면 firstCard를 초기화 합니다.
+    void unPickCard()
+    {
+        if(firstCard != null &&  secondCard == null)
+        {
+            PickTime += Time.deltaTime;
+        }
+        else
+        {
+            PickTime = 0f;
+        }
+        if(PickTime > 3.0f)
+        {
+            firstCard.GetComponent<Card>().CloseCard();
+            firstCard = null;
+            PickTime = 0f;
+        }
+    }
 }
