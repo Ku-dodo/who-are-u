@@ -23,6 +23,7 @@ public class Card : MonoBehaviour
     Vector3 dir;
     Vector3 placePos;
     bool isPlace = true;
+    bool isMute = true;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +62,7 @@ public class Card : MonoBehaviour
     {
         transform.rotation = Quaternion.identity;
         animator.SetBool("IsOpen", true);
-        StartCoroutine(IOpenCard());        
+        StartCoroutine(IOpenCard());
     }
 
     public void OpenCard()
@@ -108,7 +109,8 @@ public class Card : MonoBehaviour
         gameObject.transform.Find("Back").gameObject.SetActive(true);
         if(isOpen) spriteRenderer.color = backgroundCardColor[1];
         animator.SetBool("IsOpen", false);
-        audioManager.instance.flipPlay();
+        if (isMute) isMute = !isMute;
+        else audioManager.instance.flipPlay();
         boxCollider.enabled = true;
     }
 
