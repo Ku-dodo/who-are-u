@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public Text trytxt;
     int matchCount;
     int matchTry;
+    int matchFailed;
+    int totalScore;
 
     //MatchUI 관련 변수
     public GameObject matchCanvas;
@@ -56,12 +58,12 @@ public class GameManager : MonoBehaviour
     public void OnTimer()
     {
         TimeCanvas.SetActive(true);
-        sortCompleted = true;   //test용
+        sortCompleted = true;
     }
 
     //Timer..
     void Timer()
-    {   
+    {
 
         if (sortCompleted == true)  // true 일때 Timer가 실행 됨..
         {
@@ -143,6 +145,10 @@ public class GameManager : MonoBehaviour
             //매칭 실패 UI가 나타났다가 사라짐
             unMatchCanvas.SetActive(true);
             Invoke("HideUnMatchUI", 1.0f);
+
+            //시간 2초 감소..
+            matchFailed++;
+            time -= 2;
         }
         firstCard = null;
         secondCard = null;
@@ -161,10 +167,18 @@ public class GameManager : MonoBehaviour
     //매칭 성공 시 UI 노출
     void EndGame()
     {
+        //점수 = 남은 시간("N0") * 10 + 매칭 성공(횟수 * 50) - 매칭 실패(횟수 * 15)
+        totalScore = ((int)time * 10) + (matchCount * 50) - (matchFailed * 15);
+
+        /*timetxt.text = "남은 시간" + time.ToString("N1");*/
+        timetxt.text = $"남은 시간 : {time.ToString("N1")}";
         trytxt.text = $"시도 횟수 : {matchTry}";
-        counttxt.text = $"점수 : {matchCount}";
+        /*counttxt.text = $"점수 : {matchCount}";*/
+        counttxt.text = "점수 : " + totalScore.ToString();
+
         Time.timeScale = 0f;
         endcanvas.SetActive(true);
+        TimeCanvas.SetActive(false);
     }
 
 }
