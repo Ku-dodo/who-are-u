@@ -723,6 +723,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed4e48126dcc40e43937a32cb42129f6, type: 3}
+--- !u!114 &610543641 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1907106075866714541, guid: ed4e48126dcc40e43937a32cb42129f6, type: 3}
+  m_PrefabInstance: {fileID: 610543640}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c49b1ee4682d434890cfb5593a0c900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &618368420
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,6 +767,7 @@ MonoBehaviour:
   TimeCanvas: {fileID: 1347957609}
   timetxt: {fileID: 387608704}
   sortCompleted: 0
+  cardDealer: {fileID: 610543641}
   endcanvas: {fileID: 1340502112}
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}

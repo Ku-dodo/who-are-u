@@ -770,6 +770,7 @@ MonoBehaviour:
   TimeCanvas: {fileID: 159411441}
   timetxt: {fileID: 2138561033}
   sortCompleted: 0
+  cardDealer: {fileID: 1158633302}
   endcanvas: {fileID: 1936925903}
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
@@ -1276,6 +1277,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 989e75a4f33aba849829a458a6e7a5e5, type: 3}
+--- !u!114 &1158633302 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1065655015160354839, guid: 989e75a4f33aba849829a458a6e7a5e5, type: 3}
+  m_PrefabInstance: {fileID: 1158633301}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c49b1ee4682d434890cfb5593a0c900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1184490182
 GameObject:
   m_ObjectHideFlags: 0
