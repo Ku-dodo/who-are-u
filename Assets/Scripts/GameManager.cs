@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     //시간 관련 변수
     public GameObject card;
+    public GameObject TimeCanvas;
     public Text timetxt;
     float time = 30.0f;
 
@@ -63,10 +64,11 @@ public class GameManager : MonoBehaviour
     //Timer..
     void Timer()
     {
-        sortCompleted = true;   //test용
+        /*sortCompleted = true;   //test용*/
 
         if (sortCompleted == true)  // true 일때 Timer가 실행 됨..
         {
+            TimeCanvas.SetActive(true);
             time -= Time.deltaTime;
             timetxt.text = time.ToString("N1");
 
