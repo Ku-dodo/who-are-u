@@ -12,7 +12,7 @@ public class audioManager : MonoBehaviour
         instance = this;
     }
     public AudioSource audioSource;
-    public AudioClip bgmusic;
+    /*public AudioClip bgmusic;*/   //BGM에서 관리
     public AudioClip flip;
     public AudioClip match;
     public AudioClip unmatch;
@@ -20,8 +20,8 @@ public class audioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioSource.clip = bgmusic;
-        audioSource.Play();
+        /*audioSource.clip = bgmusic;*/
+        /*audioSource.Play();*/
     }
 
     // Update is called once per frame

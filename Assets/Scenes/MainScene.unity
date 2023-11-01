@@ -232,7 +232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &262604767
 MonoBehaviour:
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 262604768}
-  bgmusic: {fileID: 8300000, guid: 5a20eb47405d5e14e91839bc41b02b50, type: 3}
+  bgmusic: {fileID: 0}
   flip: {fileID: 8300000, guid: e9dcfebb230b19141bbd8d6c02e02e46, type: 3}
   match: {fileID: 8300000, guid: 3854f3862f985e243a6d4ebd2fb34b38, type: 3}
   unmatch: {fileID: 8300000, guid: 9af30e6d8058aa445be3e278e91e7a1d, type: 3}
