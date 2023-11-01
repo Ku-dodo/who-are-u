@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     //결과 창 점수 관련 변수
     public Text counttxt;
     public Text trytxt;
-    int matchCount = 333;
-    int matchTry = 400;
+    int matchCount;
+    int matchTry;
 
     //MatchUI 관련 변수
     public GameObject matchCanvas;
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
             if (time <= 0.00f)
             {
                 Time.timeScale = 0.0f;
-                endcanvas.SetActive(true);
+                EndGame();
                 BGM.instance.SpeedUp(0);
                 timetxt.text = "<color=black>" + time.ToString("N1") + "</color>";
             }
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
 
             //audioManager 에서 받아와서 true 코드 실행
-            //audioManager.instance.matchPlay();
+            audioManager.instance.matchPlay();
             
 
             firstCard.GetComponent<Card>().DestroyCard();
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("UnMatched!");
             //audioManager 에서 받아와서 false 코드 실행
-            //audioManager.instance.unmatchPlay();
+            audioManager.instance.unmatchPlay();
 
 
             firstCard.GetComponent<Card>().CloseCard();
