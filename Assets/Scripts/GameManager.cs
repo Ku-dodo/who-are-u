@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        Debug.Log(PlayerPrefs.GetInt("ClearStage"));
     }
 
     // Update is called once per frame
@@ -123,10 +124,14 @@ public class GameManager : MonoBehaviour
             //매치 성공 카드 카운터
             matchCount++;
 
+           
+
 
             int childLeft = GameObject.Find("Cards").transform.childCount;
             if (childLeft == 2)
             {
+                //44보드 클리어 여부를 저장하기 위한 코드
+                PlayerPrefs.SetInt("ClearStage", 1);
                 Invoke("EndGame", 1.1f);
             }
         }
