@@ -17,6 +17,7 @@ public class CardDealer : MonoBehaviour
     
     public enum EStage { Card16EA = 4, Card36EA = 6 };
     public EStage stage = EStage.Card16EA;
+
     // Start is called before the first frame update
     void Start()
     {

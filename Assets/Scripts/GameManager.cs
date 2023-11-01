@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SearchService;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     //카드 배치
     public bool sortCompleted = false;
+    public CardDealer cardDealer;
 
     //게임 종료 관련 변수
     public GameObject endcanvas;
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     int matchTry;
     int matchFailed;
     int totalScore;
+    int bestScore = 0;
 
     //MatchUI 관련 변수
     public GameObject matchCanvas;
@@ -43,6 +46,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadBestScore();
+        SpawnUI();
+
         Time.timeScale = 1.0f;
         Debug.Log(PlayerPrefs.GetInt("ClearStage"));
     }
@@ -174,10 +180,58 @@ public class GameManager : MonoBehaviour
         /*counttxt.text = $"점수 : {matchCount}";*/
         counttxt.text = "점수 : " + totalScore.ToString();
 
+        if(bestScore < totalScore)
+        {
+            SaveBestScore(totalScore);
+        }
+
         Time.timeScale = 0f;
         endcanvas.SetActive(true);
         TimeCanvas.SetActive(false);
         BGM.instance.SpeedUp(0);
     }
 
+    void SpawnUI()
+    {
+        Instantiate(Resources.Load<GameObject>("UI/BestScore"));
+    }
+
+    void LoadBestScore()
+    {
+        switch(cardDealer.stage)
+        {
+            case CardDealer.EStage.Card16EA:
+                if (PlayerPrefs.HasKey("4by4BestScore"))
+                {
+                    bestScore = PlayerPrefs.GetInt("4by4BestScore");
+                }
+                break;
+
+            case CardDealer.EStage.Card36EA:
+                if (PlayerPrefs.HasKey("6by6BestScore"))
+                {
+                    bestScore = PlayerPrefs.GetInt("6by6BestScore");
+                }
+                break;
+        }
+    }
+
+    void SaveBestScore(int bestScore)
+    {
+        switch (cardDealer.stage)
+        {
+            case CardDealer.EStage.Card16EA:
+                PlayerPrefs.SetInt("4by4BestScore", totalScore);
+                break;
+
+            case CardDealer.EStage.Card36EA:
+                PlayerPrefs.SetInt("6by6BestScore", totalScore);
+                break;
+        }
+    }
+
+    public int GetBestScore()
+    {
+        return bestScore;
+    }
 }
