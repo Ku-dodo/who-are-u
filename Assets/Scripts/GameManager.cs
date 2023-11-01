@@ -1,6 +1,4 @@
-using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -32,12 +30,7 @@ public class GameManager : MonoBehaviour
     //MatchUI 관련 변수
     public GameObject matchCanvas;
     public GameObject unMatchCanvas;
-    public Text cardNameTxt;
-    
-    string[] teamName = new string[4] {"구도현", "박준욱", "윤희성", "하승권"};
-    int resourseDirFile = Directory.GetFiles("./Assets/Resources").Length / 2;
-    
-
+    public Text ownerNameTxt;
 
     void Awake()
     {
@@ -98,40 +91,32 @@ public class GameManager : MonoBehaviour
     //매치 시도 함수
     public void IsMatched()
     {
-        //
+        
         string firstCardImage = firstCard.transform.Find("Front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("Front").GetComponent<SpriteRenderer>().sprite.name;
         matchTry++;
 
         if (firstCardImage == secondCardImage)
         {
-
+            Debug.Log("Matched!");
 
 
             //audioManager 에서 받아와서 true 코드 실행
-            audioManager.instance.matchPlay();
-
+            //audioManager.instance.matchPlay();
+            
 
             firstCard.GetComponent<Card>().DestroyCard();
             secondCard.GetComponent<Card>().DestroyCard();
+            //Debug.Log(firstCard.GetComponent<Card>().Owner);
+            ownerNameTxt.text = firstCard.GetComponent<Card>().Owner;
 
-            //매치 성공 시 Text 변환 switch문 예정
-            cardNameTxt.text = (resourseDirFile / teamName.Length) switch
-            {
-                4 => teamName[3],
-                3 => teamName[2],
-                2 => teamName[1],
-                _ => teamName[0]
-            };
-            
-            //매칭 성공 UI가 나타났다가 사라짐 넣을 예정
+
+            //매칭 성공 UI가 나타났다가 사라짐
             matchCanvas.SetActive(true);
-            Invoke("HideMatchUI", 0.5f);
+            Invoke("HideMatchUI", 1.0f);
 
             //매치 성공 카드 카운터
             matchCount++;
-
-            int peopleName = int.Parse(firstCardImage.Substring(4));
 
 
             int childLeft = GameObject.Find("Cards").transform.childCount;
@@ -142,16 +127,17 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            Debug.Log("UnMatched!");
             //audioManager 에서 받아와서 false 코드 실행
-            audioManager.instance.unmatchPlay();
+            //audioManager.instance.unmatchPlay();
 
 
             firstCard.GetComponent<Card>().CloseCard();
             secondCard.GetComponent<Card>().CloseCard();
 
-            //매칭 실패 UI가 나타났다가 사라짐 넣을 예정
+            //매칭 실패 UI가 나타났다가 사라짐
             unMatchCanvas.SetActive(true);
-            Invoke("HideUnMatchUI", 0.5f);
+            Invoke("HideUnMatchUI", 1.0f);
         }
         firstCard = null;
         secondCard = null;
