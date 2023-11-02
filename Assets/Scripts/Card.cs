@@ -122,6 +122,8 @@ public class Card : MonoBehaviour
     IEnumerator IDestroyCard()
     {
         yield return new WaitForSeconds(1.0f);
+        GameObject go = Instantiate(Resources.Load<GameObject>("Prefab/Soul"), transform.position, Quaternion.identity);
+        go.GetComponent<Soul>().Init(owner);
         Destroy(gameObject);
     }
 

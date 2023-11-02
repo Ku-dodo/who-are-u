@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 1530799496763916369}
   m_Layer: 0
   m_Name: Card36
-  m_TagString: Untagged
+  m_TagString: 36mode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

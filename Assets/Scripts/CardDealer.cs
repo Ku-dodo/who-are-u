@@ -70,7 +70,7 @@ public class CardDealer : MonoBehaviour
                 break;
 
             case EStage.Card36EA:
-                pos = new Vector3(-2.35f + 0.95f * x, -3.75f + 1.15f * y, 0);
+                pos = new Vector3(-2.35f + 0.95f * x, -3.25f + 1.15f * y, 0);
                 break;
         }
         return pos;
