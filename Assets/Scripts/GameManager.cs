@@ -38,7 +38,9 @@ public class GameManager : MonoBehaviour
     //MatchUI ê´€ë ¨ ë³€ìˆ˜
     public GameObject matchCanvas;
     public GameObject unMatchCanvas;
-    public Text ownerNameTxt;
+    public string ownerName;
+    //public Text ownerNameTxt;
+
 
     //ì¹´ë“œ ì´ˆê¸°í™” ê´€ë ¨ íƒ€ì´ë¨¸
     float PickTime = 0f;
@@ -123,8 +125,6 @@ public class GameManager : MonoBehaviour
 
         if (firstCardImage == secondCardImage)
         {
-            Debug.Log("Matched!");
-
 
             //audioManager ì—ì„œ ë°›ì•„ì™€ì„œ true ì½”ë“œ ì‹¤í–‰
             audioManager.instance.matchPlay();
@@ -133,12 +133,19 @@ public class GameManager : MonoBehaviour
             firstCard.GetComponent<Card>().DestroyCard();
             secondCard.GetComponent<Card>().DestroyCard();
             //Debug.Log(firstCard.GetComponent<Card>().Owner);
-            ownerNameTxt.text = firstCard.GetComponent<Card>().Owner;
+            //ownerNameTxt.text = firstCard.GetComponent<Card>().Owner;
 
+            ownerName = GameManager.I.firstCard.GetComponent<Card>().Owner;
 
+<<<<<<< Updated upstream
             //ë§¤ì¹­ ì„±ê³µ UIê°€ ë‚˜íƒ€ë‚¬ë‹¤ê°€ ì‚¬ë¼ì§
             matchCanvas.SetActive(true);
             Invoke("HideMatchUI", 1.0f);
+=======
+            //¸ÅÄª ¼º°ø UI°¡ ³ªÅ¸³µ´Ù°¡ »ç¶óÁü
+            Instantiate(matchCanvas);
+            
+>>>>>>> Stashed changes
 
             //ë§¤ì¹˜ ì„±ê³µ ì¹´ë“œ ì¹´ìš´í„°
             matchCount++;
@@ -146,17 +153,26 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+<<<<<<< Updated upstream
             Debug.Log("UnMatched!");
             //audioManager ì—ì„œ ë°›ì•„ì™€ì„œ false ì½”ë“œ ì‹¤í–‰
+=======
+            //audioManager ¿¡¼­ ¹Ş¾Æ¿Í¼­ false ÄÚµå ½ÇÇà
+>>>>>>> Stashed changes
             audioManager.instance.unmatchPlay();
 
 
             firstCard.GetComponent<Card>().CloseCard();
             secondCard.GetComponent<Card>().CloseCard();
 
+<<<<<<< Updated upstream
             //ë§¤ì¹­ ì‹¤íŒ¨ UIê°€ ë‚˜íƒ€ë‚¬ë‹¤ê°€ ì‚¬ë¼ì§
             unMatchCanvas.SetActive(true);
             Invoke("HideUnMatchUI", 1.0f);
+=======
+            //¸ÅÄª ½ÇÆĞ UI°¡ ³ªÅ¸³µ´Ù°¡ »ç¶óÁü
+            Instantiate(unMatchCanvas);
+>>>>>>> Stashed changes
 
             //ì‹œê°„ 2ì´ˆ ê°ì†Œ..
             matchFailed++;
@@ -166,6 +182,7 @@ public class GameManager : MonoBehaviour
         secondCard = null;
     }
 
+<<<<<<< Updated upstream
     //ë§¤ì¹­ê²°ê³¼ UI Hide
     public void HideMatchUI()
     {
@@ -177,6 +194,9 @@ public class GameManager : MonoBehaviour
     }
 
     //ë§¤ì¹­ ì„±ê³µ ì‹œ UI ë…¸ì¶œ
+=======
+    //¸ÅÄª ¼º°ø ½Ã UI ³ëÃâ
+>>>>>>> Stashed changes
     void EndGame()
     {
         //ì ìˆ˜ = ë‚¨ì€ ì‹œê°„("N0") * 10 + ë§¤ì¹­ ì„±ê³µ(íšŸìˆ˜ * 50) - ë§¤ì¹­ ì‹¤íŒ¨(íšŸìˆ˜ * 15)
