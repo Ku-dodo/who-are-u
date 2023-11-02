@@ -115,7 +115,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     //매치 시도 함수
     public void IsMatched()
     {
