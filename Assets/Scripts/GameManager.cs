@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     //MatchUI 관련 변수
     public GameObject matchCanvas;
     public GameObject unMatchCanvas;
-    public Text ownerNameTxt;
+    public string ownerName;
 
     //카드 초기화 관련 타이머
     float PickTime = 0f;
@@ -135,13 +135,11 @@ public class GameManager : MonoBehaviour
 
             firstCard.GetComponent<Card>().DestroyCard();
             secondCard.GetComponent<Card>().DestroyCard();
-            //Debug.Log(firstCard.GetComponent<Card>().Owner);
-            ownerNameTxt.text = firstCard.GetComponent<Card>().Owner;
+            ownerName = GameManager.I.firstCard.GetComponent<Card>().Owner;
 
 
-            //매칭 성공 UI가 나타났다가 사라짐
-            matchCanvas.SetActive(true);
-            Invoke("HideMatchUI", 1.0f);
+            //매칭 성공 UI를 인스턴스 생성
+            Instantiate(matchCanvas);
 
             //매치 성공 카드 카운터
             matchCount++;
@@ -157,9 +155,8 @@ public class GameManager : MonoBehaviour
             firstCard.GetComponent<Card>().CloseCard();
             secondCard.GetComponent<Card>().CloseCard();
 
-            //매칭 실패 UI가 나타났다가 사라짐
-            unMatchCanvas.SetActive(true);
-            Invoke("HideUnMatchUI", 1.0f);
+            //매칭 실패 UI를 인스턴스 생성
+            Instantiate(unMatchCanvas);
 
             //시간 1초 감소..
             matchFailed++;
@@ -169,17 +166,7 @@ public class GameManager : MonoBehaviour
         secondCard = null;
     }
 
-    //매칭결과 UI Hide
-    public void HideMatchUI()
-    {
-        matchCanvas.gameObject.SetActive(false);
-    }
-    public void HideUnMatchUI()
-    {
-        unMatchCanvas.SetActive(false);
-    }
 
-    //매칭 성공 시 UI 노출
     void EndGame()
     {
         //점수 = 남은 시간("N0") * 10 + 매칭 성공(횟수 * 50) - 매칭 실패(횟수 * 15)
@@ -201,9 +188,6 @@ public class GameManager : MonoBehaviour
         TimeCanvas.SetActive(false);
         BGM.instance.SpeedUp(0);
     }
-
-        
-
 
     void SpawnUI()
     {
