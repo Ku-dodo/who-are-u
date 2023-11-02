@@ -1,1 +1,2 @@
 // 아무말 대잔치
+Edit -> Clear All PlayerPrefaps = PlayerPrefaps 초기화 시켜줌

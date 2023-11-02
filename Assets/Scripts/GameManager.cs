@@ -190,6 +190,7 @@ public class GameManager : MonoBehaviour
         endcanvas.SetActive(true);
         TimeCanvas.SetActive(false);
         BGM.instance.SpeedUp(0);
+        sortCompleted = false;
     }
 
     void SpawnUI()
