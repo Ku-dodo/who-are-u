@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
             //44보드 클리어 여부를 저장하기 위한 코드
             PlayerPrefs.SetInt("ClearStage", 1);
-            Invoke("EndGame", 1.1f);
+            //Invoke("EndGame", 1.1f);
             EndGame();
         }
 
@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             if (time <= 0.00f)
             {
                 time = 0.0f;
-                Time.timeScale = 0.0f;
+                //Time.timeScale = 0.0f;
                 EndGame();
                 BGM.instance.SpeedUp(0);
                 timetxt.text = "<color=black>" + time.ToString("N1") + "</color>";
@@ -119,7 +119,6 @@ public class GameManager : MonoBehaviour
     //매치 시도 함수
     public void IsMatched()
     {
-        
         string firstCardImage = firstCard.transform.Find("Front").GetComponent<SpriteRenderer>().sprite.name;
         string secondCardImage = secondCard.transform.Find("Front").GetComponent<SpriteRenderer>().sprite.name;
         matchTry++;
@@ -169,13 +168,13 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
+        Debug.Log("End Game");
         //점수 = 남은 시간("N0") * 10 + 매칭 성공(횟수 * 50) - 매칭 실패(횟수 * 15)
         totalScore = ((int)time * 10) + (matchCount * 50) - (matchFailed * 15);
         if (totalScore < 0) totalScore = 0;
 
         endTimeText.text = $"남은 시간 : {time.ToString("N1")}";
         trytxt.text = $"시도 횟수 : {matchTry}";
-        /*counttxt.text = $"점수 : {matchCount}";*/
         counttxt.text = "점수 : " + totalScore.ToString();
 
         if (bestScore < totalScore)
