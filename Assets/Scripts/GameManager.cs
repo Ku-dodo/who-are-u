@@ -182,7 +182,11 @@ public class GameManager : MonoBehaviour
         {
             SaveBestScore(totalScore);
         }
+        Invoke("ViewRecord", 1.0f);
+    }
 
+    void ViewRecord()
+    {
         Time.timeScale = 0f;
         endcanvas.SetActive(true);
         TimeCanvas.SetActive(false);
