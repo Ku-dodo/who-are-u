@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
 
             if (time <= 0.00f)
             {
+                time = 0.0f;
                 Time.timeScale = 0.0f;
                 EndGame();
                 BGM.instance.SpeedUp(0);
@@ -183,6 +184,7 @@ public class GameManager : MonoBehaviour
     {
         //Á¡¼ö = ³²Àº ½Ã°£("N0") * 10 + ¸ÅÄª ¼º°ø(È½¼ö * 50) - ¸ÅÄª ½ÇÆÐ(È½¼ö * 15)
         totalScore = ((int)time * 10) + (matchCount * 50) - (matchFailed * 15);
+        if (totalScore < 0) totalScore = 0;
 
         endTimeText.text = $"³²Àº ½Ã°£ : {time.ToString("N1")}";
         trytxt.text = $"½Ãµµ È½¼ö : {matchTry}";

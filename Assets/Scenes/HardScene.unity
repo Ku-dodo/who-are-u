@@ -774,7 +774,7 @@ MonoBehaviour:
   endcanvas: {fileID: 1936925903}
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
-  endTimeText: {fileID: 0}
+  endTimeText: {fileID: 79915516}
   counttxt: {fileID: 1803448184}
   trytxt: {fileID: 33019559}
   matchCanvas: {fileID: 822263812}
